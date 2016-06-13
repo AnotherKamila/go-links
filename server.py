@@ -17,7 +17,7 @@ def handler(filename):
         def do_GET(self):
             name = self.path.strip('/')
             if name in links:
-                self.send_response(301)
+                self.send_response(302)
                 self.send_header('Location', links[name])
             else:
                 self.send_response(404)
@@ -31,4 +31,4 @@ if __name__ == '__main__':
         server.serve_forever()
     except KeyboardInterrupt:
         print('^C received, shutting down')
-        server.close()
+        server.socket.close()
